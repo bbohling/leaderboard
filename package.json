@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon index.js",
     "db:migrate": "prisma migrate dev",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate",
+    "start": "node index.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.22",

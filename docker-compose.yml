@@ -1,0 +1,21 @@
+services:
+  api:
+    container_name: leaderboard-api
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      VIRTUAL_HOST: leaderboard-api.brycebohling.com
+      VIRTUAL_PORT: 3000
+      LETSENCRYPT_HOST: leaderboard-api.brycebohling.com
+      LETSENCRYPT_EMAIL: brandon@bohling.me
+    expose:
+      - 3000
+# networks:
+#   default:
+#     name: nginx-proxy
+#     external: true
