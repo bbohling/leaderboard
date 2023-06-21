@@ -50,7 +50,7 @@ app.get("/leaderboards", async (req, res, next) => {
 app.post("/leaderboards", async (req, res, next) => {
   console.log(req.body);
   try {
-    const newEntry = await prisma.leaderboard.create({ data: JSON.stringify(req.body) });
+    const newEntry = await prisma.leaderboard.create({ data: req.body });
     res.json(newEntry);
   } catch (error) {
     next(error);
