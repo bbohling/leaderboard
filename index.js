@@ -11,13 +11,14 @@ const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc.js");
 const { PrismaClient } = require("@prisma/client");
 const _ = require("lodash");
-
+const bodyParser = require('body-parser')
 const app = express();
 
 // middeware
 app.use(express.json());
 // app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("tiny"));
 // app.use(
