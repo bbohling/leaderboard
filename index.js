@@ -37,7 +37,11 @@ dayjs.extend(utc);
 app.get("/leaderboards", async (req, res, next) => {
   try {
     const leaderboards = await prisma.leaderboard.findMany();
-    res.json(leaderboards);
+    const results = {
+      results: leaderboards?.length,
+      data: leaderboards
+    }
+    res.json(results);
   } catch (error) {
     next(error);
   }
