@@ -133,3 +133,4 @@ dist
 *.db-journal
 
 dist/
+.DS_Store
