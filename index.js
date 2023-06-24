@@ -44,7 +44,7 @@ app.post("/leaderboards", async (req, res, next) => {
 });
 
 app.delete('/leaderboards/:id', async (req, res, next) => {
-  const token = req.params.lbToken;
+  const token = req.query.lbToken;
   if (process.env.LB_TOKEN && token === process.env.LB_TOKEN) {
     try {
       const id = Number(req.params.id);
