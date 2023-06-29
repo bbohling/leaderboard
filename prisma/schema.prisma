@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Leaderboard {
-  id         Int    @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   user       String
   score      Int
   wave       Int
@@ -19,4 +19,5 @@ model Leaderboard {
   difficulty String
   kills      Int
   version    String
+  createdAt  DateTime @default(now())
 }
