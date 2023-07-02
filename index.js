@@ -21,10 +21,15 @@ dayjs.extend(utc);
 app.get("/leaderboards", async (req, res, next) => {
   const limit = req.query.limit && Number(req.query.limit);
   const version = req.query.version;
-  const difficulty = req.query.difficulty || "normal";
+  const difficulty = req.query.difficulty;
 
+  console.log(limit);
+  console.log(version);
+  console.log(difficulty);
+  const query = {where: { version, difficulty }, take: limit, orderBy: [{score: 'desc'}, {createdAt: 'desc'}]};
+  console.log(query);
   try {
-    const leaderboards = await prisma.leaderboard.findMany({where: { version, difficulty }, take: limit});
+    const leaderboards = await prisma.leaderboard.findMany(query);
     const results = {
       results: leaderboards?.length,
       data: leaderboards
