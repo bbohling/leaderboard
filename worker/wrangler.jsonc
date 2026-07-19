@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "leaderboard-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-19",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "routes": [
+    {
+      "pattern": "api.brycebohling.com/*",
+      "zone_name": "brycebohling.com"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "leaderboard",
+      "database_id": "878f0223-e06e-4ddc-8cc0-af6427c37e24"
+    }
+  ]
+  // Optional secret LB_TOKEN enables DELETE /leaderboards/:id — deliberately
+  // unset to match production (deletes 404).
+}
