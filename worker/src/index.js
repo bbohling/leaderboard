@@ -15,6 +15,13 @@ app.use("*", async (c, next) => {
   await next();
 });
 
+// Liveness probe for the cf-monitor uptime checker. Deliberately touches
+// nothing: the monitor polls every 5 minutes, and pointing it at
+// /leaderboards meant a full findMany over the table on every ping —
+// 570 D1 rows read x 288 pings = 164,160 rows/day, about 3% of the
+// free-tier read allowance spent entirely on watching ourselves.
+app.get("/health", (c) => c.text("ok"));
+
 app.get("/leaderboards", async (c) => {
   const rawLimit = c.req.query("limit");
   const limit = rawLimit ? Number(rawLimit) : undefined;
